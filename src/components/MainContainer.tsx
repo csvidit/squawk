@@ -20,7 +20,7 @@ const chromatica = localFont({
 
 const MainContainer = (props: {children: any}) =>
 {
-    return (<main className={"w-full h-full flex flex-col bg-zinc-200 dark:bg-black "+myFont.className}>{props.children}</main>);
+    return (<main className={"w-full h-full flex flex-col bg-zinc-200 dark:bg-black scroll-smooth "+myFont.className}>{props.children}</main>);
 }
 
 export default MainContainer;
