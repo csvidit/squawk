@@ -3,7 +3,7 @@ import styles from "./MainContent.module.scss"
 
 const MainContent = (props: {children: any}) =>
 {
-    return (<div id="main-content" className={"w-screen h-screen flex flex-col bg-zinc-200 dark:bg-black justify-center items-center scroll-smooth "+styles.main_content}>{props.children}</div>);
+    return (<div id="main-content" className={"w-screen h-screen flex flex-col bg-transparent justify-center items-center scroll-smooth"}>{props.children}</div>);
 }
 
 export default MainContent;
