@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import ReactionButton from "./ReactionButton";
 
 const PostCard = () => {
 
@@ -10,24 +11,25 @@ const PostCard = () => {
 }
 
   return (
-    <motion.div className="flex flex-col rounded-2xl bg-black p-4 w-96 z-10 border-2 border-lime-500 select-none">
-      <motion.div className="w-full flex flex-row items-center justify-center space-x-2">
-        <p className="text-center text-zinc-200 font-sans font-medium">viditkhandelwal</p>
-        <p className="text-center text-zinc-200 font-sans font-light text-xs">2h ago</p>
+    <motion.div className="flex flex-col rounded-2xl bg-black w-96 z-10 border-2 border-lime-500 select-none border-t-0">
+      <motion.div className="w-full flex flex-col justify-center self-center items-center bg-lime-500 rounded-t-2xl p-4">
+        <p className="text-center text-black text-3xl">imasnek</p>
+        <p className="text-center text-black font-sans font-light text-xs">2h ago</p>
       </motion.div>
-      <motion.div className="flex flex-row p-4 items-center justify-center rounded-2xl">
+      <motion.div className="flex flex-row pb-4 items-center justify-center">
         <Image
-          src="/vidit.jpg"
+          src="/unsplash-1-sq.jpg"
           alt="Vidit Khandelwal"
-          width="300"
-          height="300"
+          width="500"
+          height="500"
+          className=""
         ></Image>
       </motion.div>
-      <motion.div className="w-full flex flex-row justify-center items-center space-x-5">
-        <motion.a whileHover={{rotateX: 25}} className="bg-zinc-200 w-12 h-12 text-3xl rounded-full flex flex-row justify-center items-center hover:shadow-lg hover:shadow-red-300">💯</motion.a>
-        <motion.a whileHover={{rotateX: 25}} className="bg-zinc-200 w-12 h-12 text-3xl rounded-full flex flex-row justify-center items-center hover:shadow-lg hover:shadow-green-300">🐍</motion.a>
-        <motion.a whileHover={{rotateX: 25}} className="bg-zinc-200 w-12 h-12 text-3xl rounded-full flex flex-row justify-center items-center hover:shadow-lg hover:shadow-fuchsia-300">💅</motion.a>
-        <motion.a whileHover={{rotateX: 25}} className="bg-zinc-200 w-12 h-12 text-3xl rounded-full flex flex-row justify-center items-center hover:shadow-lg hover:shadow-slate-300">💀</motion.a>
+      <motion.div className="w-full flex flex-row justify-center items-center space-x-5 p-4">
+        <ReactionButton shadow="red-300">💯</ReactionButton>
+        <ReactionButton shadow="green-300">🐍</ReactionButton>
+        <ReactionButton shadow="fuchsia-300">💅</ReactionButton>
+        <ReactionButton shadow="slate-300">💀</ReactionButton>
       </motion.div>
     </motion.div>
   );

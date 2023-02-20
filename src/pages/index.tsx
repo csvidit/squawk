@@ -13,6 +13,7 @@ import LandingNav from "@/components/LandingNav";
 import About from "@/components/About";
 import { InView, useInView } from "react-intersection-observer";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
