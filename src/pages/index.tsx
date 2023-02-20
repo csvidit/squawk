@@ -12,6 +12,12 @@ import Link from "next/link";
 import LandingNav from "@/components/LandingNav";
 import About from "@/components/About";
 import { InView, useInView } from "react-intersection-observer";
+import Signup from "@/components/Signup";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { gsap } from "gsap";
+import {useRef, useEffect} from "react"
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,6 +47,7 @@ export default function Home() {
           </MainContent>
           <About></About>
           <Features></Features>
+          <Signup></Signup>
           <LandingNav></LandingNav>
       </MainContainer>
     </>
