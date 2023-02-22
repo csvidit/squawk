@@ -25,8 +25,8 @@ const MainContainer = (props: { children: any }) => {
       data-scroll-section
       className={
         "relative w-full h-full flex flex-col scroll-smooth " +
-        myFont.className +
-        " " +
+        // myFont.className +
+        // " " +
         styles.main_container
       }
     >

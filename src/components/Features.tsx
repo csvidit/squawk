@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 
 const Features = () => {
   const scroller = React.useRef() as React.MutableRefObject<HTMLDivElement>;
-  // const features = React.useRef() as React.MutableRefObject<HTMLDivElement>;
   const features = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -36,13 +35,28 @@ const Features = () => {
     };
   }, []);
 
+  const reactions_primary_variants = {
+    inView: {
+      opacity: 1,
+    },
+  };
+  const reactions_emoji_variants = {
+    inView: {
+      opacity: 1,
+      scale: 1.5,
+      transition: {
+        delay: 1.5,
+      }
+    },
+  };
+
   return (
-    <div className="overflow-hidden flex">
+    <div className={"overflow-hidden flex "+styles.landing_features}>
       <div className="overflow-hidden ">
         <div
-          id="skills"
+          id="features"
           ref={scroller}
-          className="landing_features flex overflow-x-hidden text-white w-[400vw] m-0 relative h-screen"
+          className="flex overflow-x-hidden text-white w-[400vw] m-0 relative h-screen"
         >
           <motion.section
             ref={features}
@@ -51,13 +65,15 @@ const Features = () => {
             <h2 className="font-medium text-6xl text-lime-500">
               sick new reactions
             </h2>
-            <div className="flex flex-row items-center space-x-4 font-light text-4xl text-zinc-300 mt-4">
+            <motion.div
+              className="flex flex-row items-center space-x-4 font-light text-4xl text-zinc-300 mt-4"
+            >
               <p>choose from</p>
               <p>💯</p>
               <p>🐍</p>
               <p>💅🏽</p>
               <p>💀</p>
-            </div>
+            </motion.div>
           </motion.section>
           <motion.section
             ref={features}
