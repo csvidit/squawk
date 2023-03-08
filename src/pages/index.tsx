@@ -17,6 +17,7 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
 import {useRef, useEffect} from "react"
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -33,14 +34,6 @@ export default function Home() {
       </Head>
       <MainContainer>
           <MainContent>
-            <div className="flex flex-col justify-end items-end space-y-0 transform -rotate-6 select-none">
-              <h1 className="text-bold text-lime-500 text-6xl lg:text-8xl">
-                squawk social
-              </h1>
-              <h2 className="text-bold text-lime-500 text-2xl lg:text-4xl">
-                spread your waves
-              </h2>
-            </div>
             {/* <motion.div animate={{y: [0, 15, 0]}} transition={{repeat: Infinity, type: "spring", duration: 2}} className="flex flex-row absolute bottom-10 text-white text-4xl">
             <Link href="#features"><HiArrowDown/></Link>
           </motion.div> */}
