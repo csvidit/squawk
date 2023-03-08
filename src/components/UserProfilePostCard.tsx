@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const UserProfilePostCard = (props: {src: string}) => {
   return (
-    <div className="rounded-2xl bg-black bg-opacity-50 w-10/12 p-5 lg:p-7 flex flex-row items-center">
+    <div className="rounded-2xl bg-black bg-opacity-50 w-10/12 p-5 lg:p-7 flex flex-col lg:flex-row items-center">
       <div className="">
         <Image
           src={props.src}
@@ -12,7 +12,7 @@ const UserProfilePostCard = (props: {src: string}) => {
           className="rounded-2xl"
         ></Image>
       </div>
-      <div className="flex flex-col justify-between ml-10 text-2xl lg:text-4xl">
+      <div className="flex flex-col justify-between mt-5 lg:mt-0 lg:ml-10 text-2xl lg:text-4xl">
         <div className="text-xl lg:text-2xl text-red-400 mb-10">
             <p className="">posted on march 01, 2023</p>
         </div>

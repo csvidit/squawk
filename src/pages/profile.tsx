@@ -48,7 +48,7 @@ export default function Home() {
               </div>
             </div> */}
           <div className="w-screen flex flex-row items-center justify-center bg-black bg-opacity-50 drop-shadow-md shadow-white">
-            <div className="p-3 lg:p-5 w-10/12 mt-40 text-lime-500 flex flex-row justify-between items-center">
+            <div className="p-3 lg:p-5 w-10/12 mt-40 text-lime-500 flex flex-col lg:flex-row lg:justify-between space-y-3 lg:space-y-0 lg:items-center">
               <div className="flex flex-row space-x-2">
                 <p className="text-4xl lg:text-6xl font-medium text-white">@</p>
                 <h1 className="text-4xl lg:text-6xl font-medium ">jessica</h1>
