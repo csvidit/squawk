@@ -14,7 +14,7 @@ const PostCard = () => {
   return (
     <motion.div
       className={
-        "flex flex-col rounded-2xl bg-black w-96 z-10 border-2 border-lime-500 select-none border-t-0 " +
+        "flex flex-col rounded-2xl bg-black w-96 z-10 border-2 border-lime-500 select-none scale-50 lg:scale-100 border-t-0 " +
         styles.post_shadow
       }
       animate={{translateY: [-10, 10, -10], transition: {type: "tween", ease: "easeInOut", duration: 3.5, repeat: Infinity}}}
