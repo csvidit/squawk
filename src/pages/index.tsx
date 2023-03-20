@@ -19,6 +19,7 @@ import { useRef, useEffect, useState } from "react";
 // import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useUser, } from "@auth0/nextjs-auth0/client";
 import HomeContent from "@/components/HomeContent";
+import HeroContent from "@/components/HeroContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,11 +66,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainContainer>
-        <MainContent>
-          {/* <motion.div animate={{y: [0, 15, 0]}} transition={{repeat: Infinity, type: "spring", duration: 2}} className="flex flex-row absolute bottom-10 text-white text-4xl">
-              <Link href="#features"><HiArrowDown/></Link>
-            </motion.div> */}
-        </MainContent>
+        <HeroContent/>
         <About></About>
         <Features></Features>
         <Signup></Signup>

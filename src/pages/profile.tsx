@@ -16,7 +16,6 @@ import Signup from "@/components/Signup";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
 import { useRef, useEffect } from "react";
-import ProfileHeader from "@/components/ProfileHeader";
 import MainProfileContent from "@/components/MainProfileContent";
 import PostCard from "@/components/PostCard";
 import NormalPostCard from "@/components/NormalPostCard";
@@ -37,7 +36,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainContainer>
-        <MainProfileContent>
+        <MainContent>
         <MainHeader/>
           {/* <div className="w-10/12 rounded-full p-3 lg:p-5 flex flex-row items-center justify-between bg-lime-500 drop-shadow-md shadow-white">
               <h1 className="text-4xl lg:text-6xl rounded-full">imasnek</h1>
@@ -75,7 +74,7 @@ export default function Home() {
             <UserProfilePostCard />
             <UserProfilePostCard /> */}
           </div>
-        </MainProfileContent>
+        </MainContent>
       </MainContainer>
     </>
   );

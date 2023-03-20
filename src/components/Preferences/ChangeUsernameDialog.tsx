@@ -31,13 +31,13 @@ export default function ChangeUsernameDialog(props: {user_id: string, profileCha
 
   return (
     <>
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center h-full">
         <button
           type="button"
           onClick={openModal}
-          className="w-full h-14 rounded-b-2xl bg-lime-500 text-black px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="flex flex-row items-center h-full px-4 text-2xl bg-transparent text-white border-l border-lime-500 rounded-r-full hover:bg-lime-500 hover:text-black transition-colors"
         >
-          change username
+          change
         </button>
       </div>
 

@@ -9,7 +9,7 @@ const MainProfileContent = (props: { children: any}) => {
       id="main-content"
       data-scroll
       className={
-        "w-screen h-full flex flex-col bg-transparent items-center scroll-smooth"
+        "w-screen max-w-screen h-full flex flex-col bg-transparent items-center scroll-smooth"
       }
     >
       {props.children}
