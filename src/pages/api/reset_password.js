@@ -1,5 +1,5 @@
 var axios = require("axios").default;
-var auth0 = require("auth0")
+var auth0 = require("auth0");
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -20,14 +20,16 @@ export default async function handler(req, res) {
   };
 
   try {
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-    res.status(200).send('Password reset email sent.');
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    res.status(200).send("Password reset email sent.");
   } catch (error) {
-    // Handle any errors that occur
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
