@@ -12,7 +12,7 @@ const MainContent = (props: { children: any }) => {
       id="main-content"
       data-scroll
       className={
-        "w-screen h-full min-h-screen flex flex-col bg-transparent scroll-smooth"
+        "w-screen h-full min-h-screen flex flex-col bg-transparent scroll-smooth text-white"
       }
     >
       {props.children}

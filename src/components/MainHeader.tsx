@@ -9,7 +9,7 @@ import { motion, useScroll } from "framer-motion";
 import LandingNavButton from "./LandingNavButton";
 import DropdownMenu from "./DropdownMenu";
 import Link from "next/link";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
+import { UserProfile, useUser } from "@auth0/nextjs-auth0/client";
 
 const iconVariants = {
   hover: {
@@ -18,12 +18,14 @@ const iconVariants = {
   },
 };
 
-const MainHeader = () => {
+const MainHeader = (props: {username: string}) => {
 
   return (
     <motion.div className="w-10/12 bg-zinc-100 rounded-full z-10 fixed drop-shadow-md shadow-white self-center top-12 flex flex-row pt-2 pb-2 pl-4 pr-4 space-x-1 justify-center lg:justify-between items-center font-medium text-sm lg:text-lg">
       <motion.div className="flex flex-row self-center space-x-1">
-        <Link href="/" className="hidden lg:block text-violet-700 ">squawk social</Link>
+        <Link href="/" className="hidden lg:block text-violet-700 ">
+          squawk social
+        </Link>
       </motion.div>
       <motion.div className="bg-transparent flex flex-row space-x-1 opacity-100 -z-10">
         <LandingNavButton href="#">
@@ -35,7 +37,7 @@ const MainHeader = () => {
           </motion.div>
           <p>Search</p>
         </LandingNavButton>
-        <LandingNavButton href="/profile">
+        <LandingNavButton href={"/user/"+props.username}>
           <motion.div
             className="self-center justify-center items-center"
             variants={iconVariants}

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import LandingNavButton from "./LandingNavButton";
-import Button from "./Button";
+import LandingNavButton from "../LandingNavButton";
+import Button from "../Button";
 import { HiOutlineLogin } from "react-icons/hi";
 
 const HeroContent = () => {

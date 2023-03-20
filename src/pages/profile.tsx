@@ -9,10 +9,10 @@ import Features from "@/components/Features";
 import { HiArrowDown } from "react-icons/hi2";
 import { motion, useScroll } from "framer-motion";
 import Link from "next/link";
-import LandingNav from "@/components/LandingNav";
-import About from "@/components/About";
+import LandingNav from "@/components/LandingPage/LandingNav";
+import About from "@/components/LandingPage/About";
 import { InView, useInView } from "react-intersection-observer";
-import Signup from "@/components/Signup";
+import Signup from "@/components/LandingPage/Signup";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
 import { useRef, useEffect } from "react";
@@ -26,6 +26,20 @@ import MainHeader from "@/components/MainHeader";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const response = await fetch("/api/user_profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }),
+      });
+      setResStatus(response.status);
+      const profile = await response.json();
+      setUserProfile(profile[0]);
+    };
+    fetchProfileData();
+  }, [username]);
 
   return (
     <>

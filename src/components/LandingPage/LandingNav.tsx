@@ -8,7 +8,7 @@ import {
 import { BsInfoCircle } from "react-icons/bs";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import LandingNavButton from "./LandingNavButton";
+import LandingNavButton from "../LandingNavButton";
 
 const iconVariants = {
   hover: {

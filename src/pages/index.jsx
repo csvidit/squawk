@@ -9,33 +9,45 @@ import Features from "@/components/Features";
 import { HiArrowDown } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import LandingNav from "@/components/LandingNav";
-import About from "@/components/About";
+import LandingNav from "@/components/LandingPage/LandingNav";
+import About from "@/components/LandingPage/About";
 import { InView, useInView } from "react-intersection-observer";
-import Signup from "@/components/Signup";
+import Signup from "@/components/LandingPage/Signup";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
 // import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
-import { useUser, } from "@auth0/nextjs-auth0/client";
-import HomeContent from "@/components/HomeContent";
-import HeroContent from "@/components/HeroContent";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import HeroContent from "@/components/LandingPage/HeroContent";
+import MainHeader from "@/components/MainHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
-  // const supabaseClient = useSupabaseClient();
   const { user, error, isLoading } = useUser();
 
-  if (isLoading) return (<p>Loading</p>);
+  const user_id = user?.sub;
+
+  const [userProfile, setUserProfile] = useState({});
+  const [resStatus, setResStatus] = useState(500);
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const response = await fetch("/api/user_profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id }),
+      });
+      const profile = await response.json();
+      setUserProfile(profile[0]);
+    };
+    fetchProfileData();
+  }, [user_id]);
+
+  if (isLoading) return <p>Loading</p>;
   if (error) return <div>{error.message}</div>;
 
   if (user) {
-
-
-
     return (
       <>
         <Head>
@@ -45,14 +57,12 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <MainContainer>
-          <HomeContent>
-            <h1 className="text-4xl lg:text-6xl font-medium text-white">
-              HOMEPAGE
-            </h1>
-            <Link href="/api/auth/logout" className="text-white">
-              Logout
-            </Link>
-          </HomeContent>
+          <MainContent>
+            <MainHeader username={userProfile?.username} />
+            <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
+              <h1 className="text-4xl">HOMEPAGE</h1>
+            </div>
+          </MainContent>
         </MainContainer>
       </>
     );
@@ -66,7 +76,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainContainer>
-        <HeroContent/>
+        <HeroContent />
         <About></About>
         <Features></Features>
         <Signup></Signup>

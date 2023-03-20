@@ -5,24 +5,36 @@ import MainContainer from "@/components/MainContainer";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
+import { UserProfile, useUser } from "@auth0/nextjs-auth0/client";
 import MainProfileContent from "@/components/MainProfileContent";
 import UserProfilePostCard from "@/components/UserProfilePostCard";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import MainHeader from "@/components/MainHeader";
 import supabase from "@/supabase/supabase";
+// import { Profile } from "@/interfaces/Profile";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Profile = (props: { user: UserProfile, data: any}) => {
+const Profile = (props) => {
+  // const [userProfile, setUserProfile] = useState({
+  //   id: 0,
+  //   created_at: Date.now(),
+  //   user_id: "default",
+  //   username: "default",
+  //   accent_color: "default",
+  //   is_complete: false,
+  // });
   const [userProfile, setUserProfile] = useState({});
+  const {user, isLoading, error} = useUser();
+  const user_id = user?.sub;
+  const [currentUser, setCurrentUser] = useState({});
   const [resStatus, setResStatus] = useState(500);
   const router = useRouter();
   const { username } = router.query;
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      const response = await fetch("/api/user_profile", {
+    const getSearchedUser = async () => {
+      const response = await fetch("/api/get_user_from_username", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username }),
@@ -31,8 +43,19 @@ const Profile = (props: { user: UserProfile, data: any}) => {
       const profile = await response.json();
       setUserProfile(profile[0]);
     };
-    fetchProfileData();
-  }, [username]);
+    const getCurrentUser = async () => {
+      const response = await fetch("/api/user_profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id }),
+      });
+      setResStatus(response.status);
+      const profile = await response.json();
+      setCurrentUser(profile[0]);
+    };
+    getSearchedUser();
+    getCurrentUser();
+  }, [user_id, username]);
 
   return (
     <>
@@ -44,7 +67,7 @@ const Profile = (props: { user: UserProfile, data: any}) => {
       </Head>
       <MainContainer>
         <MainProfileContent>
-          <MainHeader />
+          <MainHeader username={currentUser?.username} />
           <div className="w-screen flex flex-row items-center justify-center bg-black bg-opacity-50 drop-shadow-md shadow-white">
             <div className="p-3 lg:p-5 w-10/12 mt-40 text-lime-500 flex flex-col lg:flex-row lg:justify-between space-y-3 lg:space-y-0 lg:items-center">
               <div className="flex flex-row space-x-2">
@@ -87,21 +110,21 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(context) {
     // const session = getSession(context.req, context.res);
     const username = context.query.username;
-    console.log(username)
+    console.log(username);
     const { data, error } = await supabase
       .from("Users")
       .select()
       .eq("username", username);
 
     if (error || data.length == 0) {
-        console.log(data)
-      return{
-        notFound: true
-      }
+      console.log(data);
+      return {
+        notFound: true,
+      };
     }
-    console.log(data)
+    console.log(data);
     return {
-      props: data[0]
+      props: data[0],
     };
   },
 });
