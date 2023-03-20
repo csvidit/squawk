@@ -9,6 +9,7 @@ import { motion, useScroll } from "framer-motion";
 import LandingNavButton from "./LandingNavButton";
 import DropdownMenu from "./DropdownMenu";
 import Link from "next/link";
+import { UserProfile } from "@auth0/nextjs-auth0/client";
 
 const iconVariants = {
   hover: {

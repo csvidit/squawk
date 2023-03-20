@@ -1,5 +1,4 @@
 var axios = require("axios").default;
-var auth0 = require("auth0");
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

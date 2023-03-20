@@ -5,14 +5,12 @@ export default async function handler(req, res) {
     res.status(405).end();
     return;
   }
-  const { userID, newUsername } = req.body;
+  const { user_id } = req.body;
 
   const { data, error } = await supabase
     .from("Users")
-    .update({username: newUsername})
-    .eq("user_id", userID)
-    .select()
-    .eq("user_id", userID);
+    .select("is_complete")
+    .eq("user_id", user_id);
 
   if (error) {
     res.status(500);
