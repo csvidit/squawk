@@ -9,8 +9,6 @@ import { HiArrowNarrowLeft } from "react-icons/hi";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const inter = Inter({ subsets: ["latin"] });
-
 const baseVariants = {
   hover: {
     color: "#ef4444",

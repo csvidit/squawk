@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./MainContent.module.scss";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import LandingNavButton from "./LandingNavButton";
+import Button from "./Button";
+import { HiOutlineLogin } from "react-icons/hi";
 
 const MainContent = (props: { children: any }) => {
   return (
@@ -39,6 +43,10 @@ const MainContent = (props: { children: any }) => {
             <motion.span>l</motion.span>
         </h2>
       </div>
+      <Button href="/api/auth/login">
+        <HiOutlineLogin/>
+        <p>Sign In</p>
+      </Button>
       {props.children}
     </section>
   );

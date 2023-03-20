@@ -1,8 +1,15 @@
 import styles from "./Signup.module.scss";
 import { SetStateAction, useState } from "react";
 import SignupTabs from "./SignupTabs";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/supabase/supabase.config";
 
 const Signup = () => {
+  const session = useSession()
+
   return (
     <section
       data-scroll
@@ -18,9 +25,11 @@ const Signup = () => {
         </div>
       </div>
       <div className="w-1/2 flex flex-col space-y-4 justify-start items-start transform">
+        {/* <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" providers={['google']}/> */}
+
       </div>
     </section>
-  );
+  )
 };
 
 export default Signup;

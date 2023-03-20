@@ -2,11 +2,10 @@ import React, { MutableRefObject, useRef } from "react";
 import styles from "./MainContent.module.scss";
 import { motion } from "framer-motion";
 
-const MainProfileContent = (props: { children: any , ref: MutableRefObject<null>}) => {
+const MainProfileContent = (props: { children: any}) => {
 
   return (
     <section
-      ref={props.ref}
       id="main-content"
       data-scroll
       className={
