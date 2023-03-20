@@ -8,12 +8,14 @@ import MainProfileContent from "@/components/MainProfileContent";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import SettingsContent from "@/components/SettingsContent";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { supabase } from "@/supabase/supabase";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [userProfile, setUserProfile] = useState({});
-  const { user, isLoading, error } = useUser();
+  const [username, setUsername] = useState("");
+  const { user, isLoading } = useUser();
   const user_id = user?.sub;
 
   async function handleResetPassword() {
@@ -30,28 +32,29 @@ export default function Home() {
     }
   }
 
-  if (Object.keys(userProfile).length === 0){
-    getUserProfile();
-  }
-
-    async function getUserProfile() {
-    //   const response = await fetch("/api/user_profile", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ user_id }),
-    //   }).then((response) => setUserProfile(response));
-    const response = await fetch("/api/user_profile", {
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const response = await fetch("/api/user_profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id }),
       });
-      if(response.ok)
-      {
-        setUserProfile(response);
-      }
+      const profile = await response.json();
+      setUserProfile(profile[0])
+      setUsername(profile[0].username)
     }
+    fetchProfileData()
+  }, [user_id]);
 
-  //   getUserProfile();
+  //   async function fetchProfileData() {
+  //     const user_id = user?.sub;
+  //     const response = await fetch("/api/user_profile", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ user_id }),
+  //     });
+  //     return
+  //   }
 
   return (
     <>
@@ -68,7 +71,7 @@ export default function Home() {
             <div className="p-2 lg:p-5 w-10/12 mt-40 text-lime-500 flex flex-col lg:flex-row lg:justify-between space-y-2 lg:space-y-0 lg:items-center">
               <div className="flex flex-col space-y-2">
                 <p className="text-xl lg:text-2xl font-medium text-white">
-                  {JSON.stringify(userProfile)}
+                  <div>{username}</div>
                 </p>
                 <h1 className="text-4xl lg:text-6xl font-medium ">settings</h1>
               </div>
@@ -83,6 +86,20 @@ export default function Home() {
               <div className="flex flex-row space-x-2">
                 <button className="w-full h-14 rounded-b-2xl bg-lime-500">
                   change username
+                </button>
+              </div>
+            </div>
+            <div className="flex flex-col justify-between space-y-2 bg-black bg-opacity-50 border w-60 h-80 border-lime-500 rounded-2xl">
+              <div className="flex flex-col space-y-2 p-4">
+                <p className="text-2xl lg:text-4xl text-lime-500">password</p>
+                <p className="text-xl lg:text-2xl text-white">**********</p>
+              </div>
+              <div className="flex flex-row space-x-2">
+                <button
+                  onClick={handleResetPassword}
+                  className="w-full h-14 rounded-b-2xl bg-lime-500"
+                >
+                  change password
                 </button>
               </div>
             </div>
