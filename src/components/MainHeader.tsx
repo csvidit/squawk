@@ -17,50 +17,12 @@ const iconVariants = {
   },
 };
 
-const ProfileHeader = () => {
-  // const [headerUserName, setHeaderUserName] = useState(<div></div>);
-  // const { scrollYProgress } = useScroll({
-  //   target: props.ref,
-  // });
-
-  // useEffect(() => {
-  //   if (scrollYProgress.get() >=0.2) {
-  //     setHeaderUserName(<p className="text-lime-500">imasnek</p>);
-  //   }
-  // }, [scrollYProgress]);
-
-  const headerUserName = <p className="text-black">@jessica</p>;
-  const [visible, setVisible] = useState(false);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {   
-    window.addEventListener("scroll", listenToScroll);
-    return () => 
-       window.removeEventListener("scroll", listenToScroll); 
-  }, [])
-  
-  const listenToScroll = () => {
-    let heightToShowFrom = 200;
-    const winScroll = document.body.scrollTop || 
-        document.documentElement.scrollTop;
-    setHeight(winScroll);
-
-    if (winScroll < heightToShowFrom) {  
-         visible && setVisible(false);
-    } else {
-         setVisible(true);
-    }  
-  };
-  
-
-
+const MainHeader = () => {
 
   return (
     <motion.div className="w-10/12 bg-zinc-100 rounded-full z-10 fixed drop-shadow-md shadow-white self-center top-12 flex flex-row pt-2 pb-2 pl-4 pr-4 space-x-1 justify-center lg:justify-between items-center font-medium text-sm lg:text-lg">
       <motion.div className="flex flex-row self-center space-x-1">
         <Link href="/" className="hidden lg:block text-violet-700 ">squawk social</Link>
-        {/* <p className="text-black">/</p> */}
-        {/* {headerUserName} */}
       </motion.div>
       <motion.div className="bg-transparent flex flex-row space-x-1 opacity-100 -z-10">
         <LandingNavButton href="#">
@@ -81,7 +43,7 @@ const ProfileHeader = () => {
           </motion.div>
           <p>Profile</p>
         </LandingNavButton>
-        <LandingNavButton href="#">
+        <LandingNavButton href="/preferences">
           <motion.div
             className="self-center justify-center items-center"
             variants={iconVariants}
@@ -90,7 +52,7 @@ const ProfileHeader = () => {
           </motion.div>
           <p>Preferences</p>
         </LandingNavButton>
-        <LandingNavButton href="/">
+        <LandingNavButton href="/api/auth/logout">
           <motion.div
             className="self-center justify-center items-center"
             variants={iconVariants}
@@ -104,4 +66,4 @@ const ProfileHeader = () => {
   );
 };
 
-export default ProfileHeader;
+export default MainHeader;

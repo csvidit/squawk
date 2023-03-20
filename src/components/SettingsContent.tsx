@@ -9,7 +9,7 @@ const SettingsContent = (props: { children: any}) => {
       id="main-content"
       data-scroll
       className={
-        "w-screen h-screen flex flex-col bg-transparent items-center scroll-smooth"
+        "w-screen h-screen flex flex-col bg-transparent items-center text-white scroll-smooth"
       }
     >
       {props.children}

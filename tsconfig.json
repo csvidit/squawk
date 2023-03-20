@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js", "src/pages/api/reset_password.js", "src/pages/api/user_profile.ts", "src/pages/settings.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js", "src/pages/api/reset_password.js", "src/pages/api/user_profile.ts", "src/pages/preferences.jsx", "src/pages/api/change_username.js"],
   "exclude": ["node_modules"]
 }

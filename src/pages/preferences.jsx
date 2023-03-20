@@ -2,23 +2,33 @@ import Head from "next/head";
 import MainContainer from "@/components/MainContainer";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { gsap } from "gsap";
-import { useRef, useEffect, useState } from "react";
-import ProfileHeader from "@/components/ProfileHeader";
-import MainProfileContent from "@/components/MainProfileContent";
+import { useEffect, useState, Suspense } from "react";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import SettingsContent from "@/components/SettingsContent";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { supabase } from "@/supabase/supabase";
+import MainHeader from "@/components/MainHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [userProfile, setUserProfile] = useState({});
-  const [username, setUsername] = useState("");
   const { user, isLoading } = useUser();
   const user_id = user?.sub;
 
-  async function handleResetPassword() {
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const response = await fetch("/api/user_profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id }),
+      });
+      const profile = await response.json();
+      setUserProfile(profile[0])
+    }
+    fetchProfileData()
+  }, [user_id]);
+
+  const handleResetPassword = async () => {
     const email = user?.email; // Replace with user's email
     const response = await fetch("/api/reset_password", {
       method: "POST",
@@ -32,29 +42,21 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
+  const handleChangeUsername = async () => {
+    const new_username = 'shwnapollo'
     const fetchProfileData = async () => {
-      const response = await fetch("/api/user_profile", {
+      const response = await fetch("/api/change_username", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user_id }),
+        body: JSON.stringify({ user_id, new_username}),
       });
       const profile = await response.json();
       setUserProfile(profile[0])
-      setUsername(profile[0].username)
     }
     fetchProfileData()
-  }, [user_id]);
+  }
 
-  //   async function fetchProfileData() {
-  //     const user_id = user?.sub;
-  //     const response = await fetch("/api/user_profile", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ user_id }),
-  //     });
-  //     return
-  //   }
+  
 
   return (
     <>
@@ -66,12 +68,12 @@ export default function Home() {
       </Head>
       <MainContainer>
         <SettingsContent>
-          <ProfileHeader />
+          <MainHeader/>
           <div className="w-screen flex flex-row items-center justify-center bg-black bg-opacity-50 drop-shadow-md shadow-white">
             <div className="p-2 lg:p-5 w-10/12 mt-40 text-lime-500 flex flex-col lg:flex-row lg:justify-between space-y-2 lg:space-y-0 lg:items-center">
               <div className="flex flex-col space-y-2">
                 <p className="text-xl lg:text-2xl font-medium text-white">
-                  <div>{username}</div>
+                  <Suspense>{userProfile?.username}</Suspense>
                 </p>
                 <h1 className="text-4xl lg:text-6xl font-medium ">settings</h1>
               </div>
@@ -81,10 +83,10 @@ export default function Home() {
             <div className="flex flex-col justify-between space-y-2 bg-black bg-opacity-50 border w-60 h-80 border-lime-500 rounded-2xl">
               <div className="flex flex-col space-y-2 p-4">
                 <p className="text-2xl lg:text-4xl text-lime-500">username</p>
-                <p className="text-xl lg:text-2xl text-white">benji</p>
+                <p className="text-xl lg:text-2xl text-white">{userProfile?.username}</p>
               </div>
               <div className="flex flex-row space-x-2">
-                <button className="w-full h-14 rounded-b-2xl bg-lime-500">
+                <button onClick={handleChangeUsername} className="w-full h-14 rounded-b-2xl bg-lime-500 text-black">
                   change username
                 </button>
               </div>
@@ -97,7 +99,7 @@ export default function Home() {
               <div className="flex flex-row space-x-2">
                 <button
                   onClick={handleResetPassword}
-                  className="w-full h-14 rounded-b-2xl bg-lime-500"
+                  className="w-full h-14 rounded-b-2xl bg-lime-500 text-black"
                 >
                   change password
                 </button>
@@ -105,15 +107,15 @@ export default function Home() {
             </div>
             <div className="flex flex-col justify-between space-y-2 bg-black bg-opacity-50 border w-60 h-80 border-lime-500 rounded-2xl">
               <div className="flex flex-col space-y-2 p-4">
-                <p className="text-2xl lg:text-4xl text-lime-500">password</p>
-                <p className="text-xl lg:text-2xl text-white">**********</p>
+                <p className="text-2xl lg:text-4xl text-lime-500">accent color</p>
+                <p className="text-xl lg:text-2xl text-white">{userProfile?.accent_color}</p>
               </div>
               <div className="flex flex-row space-x-2">
                 <button
                   onClick={handleResetPassword}
-                  className="w-full h-14 rounded-b-2xl bg-lime-500"
+                  className="w-full h-14 rounded-b-2xl bg-lime-500 text-black"
                 >
-                  change password
+                  change accent color
                 </button>
               </div>
             </div>
