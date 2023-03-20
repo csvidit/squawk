@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js", "src/pages/api/reset_password.js"],
   "exclude": ["node_modules"]
 }

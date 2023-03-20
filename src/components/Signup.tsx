@@ -5,7 +5,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClient } from "@supabase/supabase-js";
-import { supabase } from "@/supabase/supabase.config";
+// import { supabase } from "@/supabase/supabase.config";
 
 const Signup = () => {
   const session = useSession()

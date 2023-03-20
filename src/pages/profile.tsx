@@ -25,10 +25,7 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
-  const mainProfileContentRef = useRef(null);
 
   return (
     <>

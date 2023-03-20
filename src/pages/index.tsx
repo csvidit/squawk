@@ -32,6 +32,9 @@ export default function Home() {
   if (error) return <div>{error.message}</div>;
 
   if (user) {
+
+
+
     return (
       <>
         <Head>
