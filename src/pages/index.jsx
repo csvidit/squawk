@@ -20,16 +20,19 @@ import { useRef, useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import HeroContent from "@/components/LandingPage/HeroContent";
 import MainHeader from "@/components/MainHeader";
+import Router, { useRouter } from "next/router";
+import PreferencesItem from "@/components/Preferences/PreferencesItem";
+import PreferencesItemLabel from "@/components/Preferences/PreferencesItemLabel";
+import PreferencesItemValue from "@/components/Preferences/PreferencesItemValue";
+import ChangeDefaultUsernameDialog from "@/components/Preferences/ChangeDefaultUsernameDialog";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
-
+  const router = useRouter();
   const user_id = user?.sub;
-
   const [userProfile, setUserProfile] = useState({});
-  const [resStatus, setResStatus] = useState(500);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -48,6 +51,69 @@ export default function Home() {
   if (error) return <div>{error.message}</div>;
 
   if (user) {
+    if (userProfile?.is_complete == false) {
+      return (
+        <>
+          <Head>
+            <title>squawk components</title>
+            <meta name="description" content="squawk components" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <MainContainer>
+            <MainContent>
+              {/* <MainHeader username={userProfile?.username} /> */}
+              <div className="w-full h-full min-w-screen min-h-screen flex flex-col space-y-6 justify-center items-center">
+                <div className="flex flex-row space-x-2 items-center text-6xl text-lime-500">
+                  <h2 className="">welcome to squawk social!</h2>
+                </div>
+                <div className="flex flex-row space-x-1 items-center text-4xl">
+                  <p>To continue, change your username from the default one</p>
+                </div>
+                <div className="w-3/4">
+                  <PreferencesItem>
+                    <PreferencesItemLabel>username</PreferencesItemLabel>
+                    <PreferencesItemValue>
+                      {userProfile.username}
+                    </PreferencesItemValue>
+                    <ChangeDefaultUsernameDialog
+                      user_id={user_id}
+                      profileChanger={setUserProfile}
+                    />
+                  </PreferencesItem>
+                </div>
+              </div>
+            </MainContent>
+          </MainContainer>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Head>
+            <title>squawk components</title>
+            <meta name="description" content="squawk components" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <MainContainer>
+            <MainContent>
+              <MainHeader username={userProfile?.username} />
+              <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
+                <h1 className="text-4xl">HOMEPAGE</h1>
+              </div>
+            </MainContent>
+          </MainContainer>
+        </>
+      );
+    }
+  } else {
     return (
       <>
         <Head>
@@ -57,33 +123,15 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <MainContainer>
-          <MainContent>
-            <MainHeader username={userProfile?.username} />
-            <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
-              <h1 className="text-4xl">HOMEPAGE</h1>
-            </div>
-          </MainContent>
+          <HeroContent />
+          <About></About>
+          <Features></Features>
+          <Signup></Signup>
+          <LandingNav></LandingNav>
         </MainContainer>
       </>
     );
   }
-  return (
-    <>
-      <Head>
-        <title>squawk components</title>
-        <meta name="description" content="squawk components" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MainContainer>
-        <HeroContent />
-        <About></About>
-        <Features></Features>
-        <Signup></Signup>
-        <LandingNav></LandingNav>
-      </MainContainer>
-    </>
-  );
 }
 
 // text-[#F08080]

@@ -17,6 +17,8 @@ export default async function handler(
     res.status(405).end();
     return;
   }
+  const onFulfilled = () => {};
+  const onRejected = () => {};
   const { user_id } = req.body;
 
   const { data, error } = await supabase
@@ -24,9 +26,37 @@ export default async function handler(
     .select()
     .eq("user_id", user_id);
 
-  if (error) {
+  // if (error || data.length == 0) {
+  //   const { data, error } = await supabase
+  //     .from("Users")
+  //     .insert({
+  //       user_id: user_id,
+  //       username: user_id,
+  //       accent_color: "lime",
+  //       is_complete: false,
+  //     })
+  //     .select();
+  //   // .then(onFulfilled, onRejected);
+  //   if (error) {
+  //     res.status(500);
+  //     return;
+  //   } else {
+  //     const { data, error } = await supabase
+  //       .from("Users")
+  //       .update({ is_complete: true })
+  //       .eq("user_id", user_id)
+  //       .select()
+        
+  //     res.status(200).json(data);
+  //     return;
+  //   }
+  if(error)
+  {
     res.status(500);
   }
-  console.log(data);
-  res.status(200).json(data);
+  else {
+    console.log(data);
+    res.status(200).json(data);
+    return;
+  }
 }
