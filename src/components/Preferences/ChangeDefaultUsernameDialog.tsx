@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
+import Router, { useRouter } from "next/router";
 
 export default function ChangeUsernameDialog(props: {
   user_id: string;
@@ -8,6 +9,7 @@ export default function ChangeUsernameDialog(props: {
   const [isOpen, setIsOpen] = useState(false);
   const [newUsername, setNewUsername] = useState("");
   const userID = props.user_id;
+  const router = useRouter();
 
   function closeModal() {
     setIsOpen(false);
@@ -37,6 +39,8 @@ export default function ChangeUsernameDialog(props: {
           if(isNowComplete.ok)
           {
             alert("Username changed, status set to complete");
+            router.push("/user/"+newUsername);
+            
           }
       }
       else

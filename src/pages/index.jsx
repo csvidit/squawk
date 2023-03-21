@@ -134,4 +134,10 @@ export default function Home() {
   }
 }
 
+export const getServerSideProps = () => {
+
+  
+
+}
+
 // text-[#F08080]
