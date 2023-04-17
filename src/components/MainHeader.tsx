@@ -18,12 +18,12 @@ const iconVariants = {
   },
 };
 
-const MainHeader = (props: {username: string}) => {
+const MainHeader = (props: {username: string | undefined}) => {
 
   return (
-    <motion.div className="w-10/12 bg-zinc-100 rounded-full z-10 fixed drop-shadow-md shadow-white self-center top-12 flex flex-row pt-2 pb-2 pl-4 pr-4 space-x-1 justify-center lg:justify-between items-center font-medium text-sm lg:text-lg">
+    <motion.div className="w-10/12 bg-zinc-100 rounded-full z-10 fixed drop-shadow-md shadow-white self-center top-12 flex flex-row pt-2 pb-2 pl-4 pr-4 space-x-1 justify-between items-center font-medium text-sm lg:text-lg">
       <motion.div className="flex flex-row self-center space-x-1">
-        <Link href="/" className="hidden lg:block text-violet-700 ">
+        <Link href="/" className="text-violet-700 ">
           squawk social
         </Link>
       </motion.div>
@@ -35,7 +35,7 @@ const MainHeader = (props: {username: string}) => {
           >
             <HiOutlineMagnifyingGlass />
           </motion.div>
-          <p>Search</p>
+          <p className="hidden lg:block">Search</p>
         </LandingNavButton>
         <LandingNavButton href={"/user/"+props.username}>
           <motion.div
@@ -44,7 +44,7 @@ const MainHeader = (props: {username: string}) => {
           >
             <HiOutlineUserCircle />
           </motion.div>
-          <p>Profile</p>
+          <p className="hidden lg:block">Profile</p>
         </LandingNavButton>
         <LandingNavButton href="/preferences">
           <motion.div
@@ -53,7 +53,7 @@ const MainHeader = (props: {username: string}) => {
           >
             <HiOutlineWrenchScrewdriver />
           </motion.div>
-          <p>Preferences</p>
+          <p className="hidden lg:block">Preferences</p>
         </LandingNavButton>
         <LandingNavButton href="/api/auth/logout">
           <motion.div
@@ -62,7 +62,7 @@ const MainHeader = (props: {username: string}) => {
           >
             <HiOutlineLogout />
           </motion.div>
-          <p>Sign Out</p>
+          <p className="hidden lg:block">Sign Out</p>
         </LandingNavButton>
       </motion.div>
     </motion.div>

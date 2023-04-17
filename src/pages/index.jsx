@@ -25,6 +25,8 @@ import PreferencesItem from "@/components/Preferences/PreferencesItem";
 import PreferencesItemLabel from "@/components/Preferences/PreferencesItemLabel";
 import PreferencesItemValue from "@/components/Preferences/PreferencesItemValue";
 import ChangeDefaultUsernameDialog from "@/components/Preferences/ChangeDefaultUsernameDialog";
+import NewPostButton from "@/components/NewPostButton";
+import NewPostDialog from "@/components/NewPostDialog"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,6 +110,7 @@ export default function Home() {
               <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
                 <h1 className="text-4xl">HOMEPAGE</h1>
               </div>
+              <NewPostDialog user_id={user_id}/>
             </MainContent>
           </MainContainer>
         </>
@@ -132,12 +135,6 @@ export default function Home() {
       </>
     );
   }
-}
-
-export const getServerSideProps = () => {
-
-  
-
 }
 
 // text-[#F08080]

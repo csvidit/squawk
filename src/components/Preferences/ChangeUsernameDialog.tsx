@@ -1,33 +1,42 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
+import { Dialog, Transition } from "@headlessui/react";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
 
-export default function ChangeUsernameDialog(props: {user_id: string, profileChanger: Dispatch<SetStateAction<{}>>}) {
-  const [isOpen, setIsOpen] = useState(false)
+export default function ChangeUsernameDialog(props: {
+  user_id: string;
+  profileChanger: Dispatch<SetStateAction<{}>>;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
   const [newUsername, setNewUsername] = useState("");
-  const userID = props.user_id
+  const userID = props.user_id;
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   const handleChangeUsername = async () => {
-    console.log(newUsername)
+    console.log(newUsername);
     const fetchProfileData = async () => {
       const response = await fetch("/api/change_username", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({userID, newUsername}),
+        body: JSON.stringify({ userID, newUsername }),
       });
-      const profile = await response.json();
-      props.profileChanger(profile[0]);
-      setNewUsername("")
-    }
-    fetchProfileData()
-  }
+      if (response.ok) {
+        const profile = await response.json();
+        props.profileChanger(profile[0]);
+        setNewUsername("");
+      }
+      else
+      {
+        alert("Username already exists");
+      }
+    };
+    fetchProfileData();
+  };
 
   return (
     <>
@@ -66,18 +75,29 @@ export default function ChangeUsernameDialog(props: {user_id: string, profileCha
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-black bg-opacity-30 backdrop-blur-md p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium leading-6 text-white"
                   >
                     Change Username
                   </Dialog.Title>
                   <div className="mt-2">
-                    <input value={newUsername} onChange={e => setNewUsername(e.target.value)}  name="newUsername" className='rounded-md ring-gray-600 p-2 bg-white text-black ring-2  focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400'></input>
+                    <input
+                      value={newUsername}
+                      onChange={(e) => setNewUsername(e.target.value)}
+                      name="newUsername"
+                      className="rounded-md ring-gray-600 p-2 bg-white text-black ring-2  focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+                    ></input>
                   </div>
-                  <div className='mt-4'>
-                    <button onClick={handleChangeUsername} type="button" className='rounded-md bg-lime-400 text-black hover:bg-lime-500 px-4 py-2'>submit</button>
+                  <div className="mt-4">
+                    <button
+                      onClick={handleChangeUsername}
+                      type="button"
+                      className="rounded-md bg-lime-400 text-black hover:bg-lime-500 px-4 py-2"
+                    >
+                      submit
+                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -86,6 +106,5 @@ export default function ChangeUsernameDialog(props: {user_id: string, profileCha
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
-

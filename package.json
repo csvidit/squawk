@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.3.1",
     "@headlessui/react": "^1.7.13",
+    "@mojs/core": "^1.5.1",
     "@next/font": "13.1.6",
     "@radix-ui/react-tabs": "^1.0.2",
     "@supabase/auth-helpers-nextjs": "^0.5.6",
@@ -27,6 +28,7 @@
     "daisyui": "^2.51.4",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "formidable": "^2.1.1",
     "framer-motion": "^9.0.4",
     "gooey-react": "^1.1.0",
     "gsap": "^3.11.4",
@@ -41,11 +43,15 @@
     "react-intersection-observer": "^9.4.2",
     "react-locomotive-scroll": "^0.2.2",
     "sass": "^1.58.2",
+    "sharp": "^0.32.0",
     "swr": "^2.1.0",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/formidable": "^2.0.5",
     "@types/jsonwebtoken": "^9.0.1",
+    "@types/uuid": "^9.0.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "prisma": "^4.11.0",
