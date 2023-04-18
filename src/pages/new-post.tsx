@@ -12,11 +12,14 @@ import RegularHero from "@/components/RegularHero";
 import { Profile } from "@/interfaces/Profile";
 import Image from "next/image";
 import ButtonSubmitPost from "@/components/ButtonSubmitPost";
+import axios from "axios";
+import { Router, useRouter } from "next/router";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-    const [userProfile, setUserProfile] = useState<Profile>();
+const router = useRouter();
+  const [userProfile, setUserProfile] = useState<Profile>();
   const { user, isLoading } = useUser();
   const user_id = user?.sub;
   const [image, setImage] = useState<string>();
@@ -58,27 +61,32 @@ export default function Home() {
 
   const handleSubmit = () => {
     const sendPostData = async () => {
-        console.log("SendPostData called");
-      const formData:any = new FormData();
-      formData.append('user_id', user_id);
-      formData.append('image', imageFile);
-      formData.append('caption', caption);
-      const response = await fetch("/api/add_post", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: formData
-      });
-      if(response.ok)
-      {
+      console.log("SendPostData called");
+      const formData: any = new FormData();
+      formData.append("user_id", user_id);
+      formData.append("image", imageFile, "newPostImage");
+      formData.append("caption", caption);
+      console.log(formData);
+      //   const response = await fetch("/api/add_post", {
+      //     method: "POST",
+
+      //     body: formData
+      //   });
+      const response = await axios.post("/api/add_post", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    });
+      if (response.status == 200) {
         alert("Post added");
-        const responseData = await response.json();
+        router.push("/user/"+userProfile?.username);
+        const responseData = await response.data;
+        console.log(responseData);
+      } else {
+        alert("Failed to add post");
+        const responseData = await response.data;
         console.log(responseData);
       }
-      else
-      {
-        alert("Failed to add post");
-      }
-      
     };
     sendPostData();
   };
@@ -136,9 +144,12 @@ export default function Home() {
                   <label className="mt-2 lg:mt-4 rounded-full pt-2 pb-2 pl-4 pr-4 p-2 bg-transparent text-neutral-100 border border-neutral-100 transition-all hover:text-red-400 hover:border-red-400">
                     <p>Change Photo</p>
                     <input
-                      onChange={(event) =>
-                        setImage(URL.createObjectURL(event.target.files[0]))
-                      }
+                      onChange={(event) => {
+                        setImage(URL.createObjectURL(event.target.files[0]));
+                        setImageFile(
+                          (event.target as HTMLInputElement)!.files?.[0]
+                        );
+                      }}
                       name="newPostPhoto"
                       type="file"
                       className="hidden"
