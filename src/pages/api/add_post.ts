@@ -58,7 +58,7 @@ export default async function handler(
     console.error("Form parsing error:", err);
     res.status(500).json({ error: "Form parsing error." });
   });
-  
+
   form.parse(req, async (err: any, fields: Fields, files: Files) => {
     console.log("Parsing Form Data");
     if (err) {
@@ -82,6 +82,7 @@ export default async function handler(
       .upload(cloudStorageFilePath, convertedImageBuffer, {
         cacheControl: "3600",
         upsert: false,
+        contentType: "image/jpeg"
       });
 
     if (error) {

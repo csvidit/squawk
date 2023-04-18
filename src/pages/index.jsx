@@ -27,6 +27,7 @@ import PreferencesItemValue from "@/components/Preferences/PreferencesItemValue"
 import ChangeDefaultUsernameDialog from "@/components/Preferences/ChangeDefaultUsernameDialog";
 import NewPostButton from "@/components/NewPostButton";
 import NewPostDialog from "@/components/NewPostDialog"
+import UserProfilePostCard from "@/components/UserProfilePostCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,8 +108,9 @@ export default function Home() {
           <MainContainer>
             <MainContent>
               <MainHeader username={userProfile?.username} />
-              <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
+              <div className="w-full h-full min-w-screen min-h-screen flex flex-col justify-center items-center">
                 <h1 className="text-4xl">HOMEPAGE</h1>
+                <UserProfilePostCard src={"/unsplash-1-sq.jpg"} />
               </div>
               <NewPostDialog user_id={user_id}/>
             </MainContent>
