@@ -1,0 +1,34 @@
+useEffect(() => {
+    const getSearchedUser = async () => {
+      const response = await fetch("/api/get_user_from_username", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }),
+      });
+      setResStatus(response.status);
+      const profile = await response.json();
+      setUserProfile(profile[0]);
+    };
+    const getCurrentUser = async () => {
+      const response = await fetch("/api/user_profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id }),
+      });
+      setResStatus(response.status);
+      const profile = await response.json();
+      setCurrentUser(profile[0]);
+    };
+    const fetchPosts = async () => {
+      const response = await fetch("/api/get_posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, criteria }),
+      });
+      const posts = await response.json();
+      setPosts(posts);
+    };
+    fetchPosts();
+    getSearchedUser();
+    getCurrentUser();
+  }, [user_id, username]);
