@@ -2,12 +2,13 @@ import { Profile } from "@/interfaces/Profile";
 import { useEffect, useState } from "react";
 import { SlUserUnfollow } from "react-icons/sl";
 
-const FollowerItem = (props: { currentUser: string; selectedUser: string }) => {
+const FollowerFollowingItem = (props: { currentUser: string; selectedUser: string; type: string}) => {
   const [exists, setExists] = useState(true);
   const [currentUserProfile, setCurrentUserProfile] = useState<Profile>();
   const [selectedUserProfile, setSelectedUserProfile] = useState<Profile>();
   const currentUser = props.currentUser;
   const selectedUser = props.selectedUser;
+  const type = props.type;
 
   useEffect(() => {
     const getCurrentUser = () => {
@@ -38,7 +39,6 @@ const FollowerItem = (props: { currentUser: string; selectedUser: string }) => {
 
   const removeHandler = () => {
     const removeFollower = () => {
-      const type = "follower"
       fetch("/api/remove_followers_following", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,4 +79,4 @@ const FollowerItem = (props: { currentUser: string; selectedUser: string }) => {
   }
 };
 
-export default FollowerItem;
+export default FollowerFollowingItem;

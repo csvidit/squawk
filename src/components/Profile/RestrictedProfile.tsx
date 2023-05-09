@@ -75,19 +75,32 @@ const RestrictedProfile = (props: {
     };
     requestStatus();
   }, [currentUserID, isRequestPending, selectedUserID]);
-  
 
   const followRequestHandler = () => {
-    const followRequest = async () => {
-      const response = await fetch("/api/follow_request", {
+    // const followRequest = async () => {
+    //   const response = await fetch("/api/follow_request", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ currentUserID, selectedUserID }),
+    //   });
+    //   const result = await response.json();
+    //   console.log(result);
+    //   setRequestPending(true);
+    // };
+    const followRequest = () => {
+      fetch("/api/follow_request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ currentUserID, selectedUserID }),
-      });
-      const result = await response.json();
-      console.log(result);
-      setRequestPending(true);
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setRequestPending(true);
+        })
+        .catch((error) => console.error("Error:", error));
     };
+
     followRequest();
   };
 

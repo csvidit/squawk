@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   // following means currentUser wants to stop following selectedUser
   const { currentUser, selectedUser, type } = req.body;
 
-  if ((type == "follower")) {
+  if (type == "follower") {
     const { data: user, error } = await supabase
       .from("Users")
       .select()
@@ -92,12 +92,12 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Remove the currentUser from the followers array
+    // Remove the currentUser from the selectedUser followers array
     const updatedFollowers = user.followers.filter(
       (follower) => follower !== currentUser
     );
 
-    // Update the user row with the updated followers array
+    // Update the user row of selectedUser with the updated followers array
     const { error: updateError } = await supabase
       .from("Users")
       .update({ followers: updatedFollowers })
@@ -124,7 +124,7 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Remove the selectedUser from the following array
+    // Remove the selectedUser from the currentUser following array
     const updatedFollowing = currentUserData.following.filter(
       (following) => following !== selectedUser
     );

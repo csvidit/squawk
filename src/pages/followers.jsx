@@ -10,8 +10,8 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import MainHeader from "@/components/MainHeader";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import FollowersContainer from "@/components/Profile/FollowersContainer";
-import FollowerItem from "@/components/Profile/FollowerItem";
-import RegularHeader from "@/components/RegularHeader"
+import FollowerFollowingItem from "@/components/Profile/FollowerFollowingItem";
+import RegularHeader from "@/components/RegularHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,7 +68,8 @@ export default function Home() {
           <div className="flex flex-col space-y-10 items-center mt-10 w-screen">
             <FollowersContainer>
               {followers.map((x, index) => (
-                <FollowerItem
+                <FollowerFollowingItem
+                  type="follower"
                   key={index}
                   currentUser={user_id}
                   selectedUser={x}

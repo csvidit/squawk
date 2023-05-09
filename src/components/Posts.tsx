@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import UserProfilePostCard from "./UserProfilePostCard";
 import PostCard from "./PostCard";
-import PostCard2 from "./PostCard2";
+import PostCard2 from "./Profile/PostCard2";
 import PublicPostCard from "./PublicPostCard";
 import PublicProfilePostCard from "./PublicProfilePostCard";
 

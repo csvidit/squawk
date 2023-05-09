@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Suspense, useState } from "react";
-import ReactionButton from "./ReactionButton";
+import ReactionButton from "../ReactionButton";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { BsDot } from "react-icons/bs";
+import DeletePostDialog from "./PostOptionsDialog";
+import PostOptionsDialog from "./PostOptionsDialog";
 
 const PostCard2 = (props: {
   reactions_100: any;
@@ -112,7 +115,6 @@ const PostCard2 = (props: {
     const updateReactions = async () => {
       const reaction = "reactions_skull";
       if (r_skull_checked == false) {
-        console.log("SKULL CHECKED - ADD");
         const action = "add";
         const response = await fetch("/api/update_reactions", {
           method: "POST",
@@ -166,127 +168,137 @@ const PostCard2 = (props: {
     <div className="rounded-2xl bg-black bg-opacity-50 w-10/12 h-1/3 p-2 lg:p-4 flex flex-col lg:flex-row justify-center items-center">
       <div className="w-1/2">
         {/* <Suspense> */}
-          <Image
-            unoptimized
-            src={props.src}
-            alt="Vidit Khandelwal"
-            width="1000"
-            height="1000"
-            className="rounded-md"
-          ></Image>
+        <Image
+          unoptimized
+          src={props.src}
+          alt="Vidit Khandelwal"
+          width="1000"
+          height="1000"
+          className="rounded-md"
+        ></Image>
         {/* </Suspense> */}
       </div>
-      <div className="flex flex-col justify-between items-end text-right w-1/2 lg:ml-10 text-2xl lg:text-4xl">
-        <div className="text-xl lg:text-2xl text-violet-500 mb-10">
-          <p className="">posted on {props.date}</p>
+      <div className="flex flex-col justify-between items-end text-right h-full w-1/2 lg:ml-10 text-2xl lg:text-4xl">
+        <div className="flex flex-row space-x-2 items-center text-xl lg:text-2xl text-violet-500 mb-10">
+          <p className="flex">posted on {props.date}</p>
+          <BsDot />
+          <div className="flex self-center">
+            <PostOptionsDialog
+              post_id={props.post_id}
+              postDeleter={undefined}
+            />
+          </div>
         </div>
         <div className="text-2xl lg:text-4xl text-neutral-100 mb-10 overscroll-conain">
           <p className="">{props.caption}</p>
         </div>
-        <div className="flex flex-col space-y-10 text-lime-500 text-xl lg:text-2xl">
-          <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
-            <p>{r_100_len}</p>
-            <div className="flex flex-row space-x-1 items-center text-white">
-              <p className="flex">gave you</p>
-              <Image
-                src="/hundred_points_3d.png"
-                width={40}
-                height={40}
-                alt="Hundred Emoji"
-              />
+        <div className="flex mb-10">
+          <div className="grid grid-cols-2 gap-y-10 gap-x-10 text-lime-500 text-xl lg:text-2xl w-full">
+            <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
+              <p className="text-2xl lg:text-4xl">{r_100_len}</p>
+              <div className="col-span-1 flex flex-row space-x-1 items-center text-white">
+                {/* <p className="flex">gave you</p> */}
+                <Image
+                  src="/hundred_points_3d.png"
+                  width={40}
+                  height={40}
+                  alt="Hundred Emoji"
+                />
+              </div>
+            </div>
+            <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
+              <p className="text-2xl lg:text-4xl">{r_nailpaint_len}</p>
+              <div className="col-span-1 flex flex-row space-x-1 items-center text-white">
+                {/* <p className="flex">gave you</p> */}
+                <Image
+                  src="/nail_polish_3d_default.png"
+                  width={40}
+                  height={40}
+                  alt="Nail Paint Emoji"
+                />
+              </div>
+            </div>
+            <div className="col-span-1 flex flex-row space-x-2 justify-end items-center flex-wrap">
+              <p className="text-2xl lg:text-4xl">{r_skull_len}</p>
+              <div className="flex flex-row space-x-1 items-center text-white">
+                {/* <p className="flex">gave you</p> */}
+                <Image
+                  src="/skull_3d.png"
+                  width={40}
+                  height={40}
+                  alt="Skull Emoji"
+                />
+              </div>
+            </div>
+            <div className="col-span-1 flex flex-row space-x-2 justify-end items-center flex-wrap">
+              <p className="text-2xl lg:text-4xl">{r_snake_len}</p>
+              <div className="flex flex-row space-x-1 items-center text-white">
+                {/* <p className="flex">gave you</p> */}
+                <Image
+                  src="/snake_3d.png"
+                  width={40}
+                  height={40}
+                  alt="Snake Emoji"
+                />
+              </div>
             </div>
           </div>
-          <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
-            <p>{r_nailpaint_len}</p>
-            <div className="flex flex-row space-x-1 items-center text-white">
-            <p className="flex">gave you</p>
+        </div>
+        {/* <div className="flex flex-col space-y-10 text-lime-500 text-xl lg:text-2xl w-full"> */}
+
+        <div className="flex flex-row space-x-4 items-center justify-around w-full">
+          <ReactionButton
+            isChecked={r_100_checked}
+            checkedChanger={set_r_100_checked}
+            onClick={r_100_clickHandler}
+            shadow="hover:shadow-red-300"
+          >
             <Image
-                src="/nail_polish_3d_default.png"
-                width={40}
-                height={40}
-                alt="Nail Paint Emoji"
-              />
-            </div>
-          </div>
-          <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
-            <p>{r_skull_len}</p>
-            <div className="flex flex-row space-x-1 items-center text-white">
-            <p className="flex">gave you</p>
+              src="/hundred_points_3d.png"
+              width={40}
+              height={40}
+              alt="Hundred Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={r_nailpaint_checked}
+            checkedChanger={set_r_nailpaint_checked}
+            onClick={r_nailpaint_clickHandler}
+            shadow="hover:shadow-fuchsia-300"
+          >
             <Image
-                src="/skull_3d.png"
-                width={40}
-                height={40}
-                alt="Skull Emoji"
-              />
-            </div>
-          </div>
-          <div className="flex flex-row space-x-2 justify-end items-center flex-wrap">
-            <p>{r_snake_len}</p>
-            <div className="flex flex-row space-x-1 items-center text-white">
-            <p className="flex">gave you</p>
+              src="/nail_polish_3d_default.png"
+              width={40}
+              height={40}
+              alt="Nail Paint Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={r_skull_checked}
+            checkedChanger={set_r_skull_checked}
+            onClick={r_skull_clickHandler}
+            shadow="hover:shadow-slate-300"
+          >
             <Image
-                src="/snake_3d.png"
-                width={40}
-                height={40}
-                alt="Snake Emoji"
-              />
-            
-            </div>
-          </div>
-          <div className="flex flex-row space-x-4 items-center">
-            <ReactionButton
-              isChecked={r_100_checked}
-              checkedChanger={set_r_100_checked}
-              onClick={r_100_clickHandler}
-              shadow="hover:shadow-red-300"
-            >
-              <Image
-                src="/hundred_points_3d.png"
-                width={40}
-                height={40}
-                alt="Hundred Emoji"
-              />
-            </ReactionButton>
-            <ReactionButton
-              isChecked={r_nailpaint_checked}
-              checkedChanger={set_r_nailpaint_checked}
-              onClick={r_nailpaint_clickHandler}
-              shadow="hover:shadow-fuchsia-300"
-            >
-              <Image
-                src="/nail_polish_3d_default.png"
-                width={40}
-                height={40}
-                alt="Nail Paint Emoji"
-              />
-            </ReactionButton>
-            <ReactionButton
-              isChecked={r_skull_checked}
-              checkedChanger={set_r_skull_checked}
-              onClick={r_skull_clickHandler}
-              shadow="hover:shadow-slate-300"
-            >
-              <Image
-                src="/skull_3d.png"
-                width={40}
-                height={40}
-                alt="Skull Emoji"
-              />
-            </ReactionButton>
-            <ReactionButton
-              isChecked={r_snake_checked}
-              checkedChanger={set_r_snake_checked}
-              onClick={r_snake_clickHandler}
-              shadow="hover:shadow-green-300"
-            >
-              <Image
-                src="/snake_3d.png"
-                width={40}
-                height={40}
-                alt="Snake Emoji"
-              />
-            </ReactionButton>
-          </div>
+              src="/skull_3d.png"
+              width={40}
+              height={40}
+              alt="Skull Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={r_snake_checked}
+            checkedChanger={set_r_snake_checked}
+            onClick={r_snake_clickHandler}
+            shadow="hover:shadow-green-300"
+          >
+            <Image
+              src="/snake_3d.png"
+              width={40}
+              height={40}
+              alt="Snake Emoji"
+            />
+          </ReactionButton>
         </div>
       </div>
     </div>
