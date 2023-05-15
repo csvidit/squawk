@@ -17,7 +17,7 @@ import PreferencesItemChangeHandler from "@/components/Preferences/PreferencesIt
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Home() {
+export default function Preferences() {
   const [userProfile, setUserProfile] = useState({});
   const { user, isLoading } = useUser();
   const user_id = user?.sub;
@@ -66,10 +66,28 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>squawk components</title>
-        <meta name="description" content="squawk components" />
+        <title>Preferences - Squawk Social</title>
+        <meta
+          name="description"
+          content="Change your username and password here."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Squawk Social LLC" />
+        <meta
+          name="keywords"
+          content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Squawk Social" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://squawk.com/preferences" />
+        <meta property="og:site_name" content="Squawk Social LLC" />
+        <meta
+          property="description"
+          content="Change your username and password here."
+        />
       </Head>
       <MainContainer>
         <MainContent>

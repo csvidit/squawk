@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FeaturesTitle from "./FeaturesTitle";
+import FeaturesText from "./FeaturesText";
 
 const Features = () => {
   const scroller = React.useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -46,12 +48,12 @@ const Features = () => {
       scale: 1.5,
       transition: {
         delay: 1.5,
-      }
+      },
     },
   };
 
   return (
-    <div className={"overflow-hidden flex "+styles.landing_features}>
+    <div className={"overflow-hidden flex " + styles.landing_features}>
       <div className="overflow-hidden ">
         <div
           id="features"
@@ -62,37 +64,54 @@ const Features = () => {
             ref={features}
             className="features px-12 w-screen h-full bg-transparent flex flex-col justify-center items-center z-50"
           >
-            <h2 className="font-medium text-6xl text-lime-500">
-              sick new reactions
-            </h2>
-            <motion.div
-              className="flex flex-row items-center space-x-4 font-light text-4xl text-zinc-300 mt-4"
-            >
+            <FeaturesTitle>sick new reactions</FeaturesTitle>
+            <motion.div className="flex flex-row items-center space-x-4 font-light text-4xl text-zinc-300 mt-4">
               <p>choose from</p>
-              <p>💯</p>
-              <p>🐍</p>
-              <p>💅🏽</p>
-              <p>💀</p>
+              <Image
+                src="/hundred_points_3d.png"
+                width={40}
+                height={40}
+                alt="Hundred Emoji"
+              />
+              <Image
+                src="/nail_polish_3d_default.png"
+                width={40}
+                height={40}
+                alt="Nail Paint Emoji"
+              />
+              <Image
+                src="/skull_3d.png"
+                width={40}
+                height={40}
+                alt="Skull Emoji"
+              />
+              <Image
+                src="/snake_3d.png"
+                width={40}
+                height={40}
+                alt="Snake Emoji"
+              />
             </motion.div>
           </motion.section>
           <motion.section
             ref={features}
             className="features px-12 w-screen h-full bg-transparent flex flex-col justify-center items-center z-50"
           >
-            <h2 className="font-medium text-6xl text-lime-500">equitable</h2>
-            <p className="font-light text-4xl text-zinc-300 mt-4">
-              newest posts show first. simple.
-            </p>
+            <FeaturesTitle>equitable</FeaturesTitle>
+            <FeaturesText>newest posts show first. simple.</FeaturesText>
           </motion.section>
           <motion.section
             ref={features}
             className="features px-12 w-screen h-full bg-transparent flex flex-col justify-center items-center z-50"
           >
-            <h2 className="font-medium text-6xl text-lime-500">drama-free</h2>
-            <div className="font-light text-4xl text-zinc-300 mt-4 flex flex-col">
+            <FeaturesTitle>drama-free</FeaturesTitle>
+            <FeaturesText>
               <p className="flex">never worry about your ratio again,</p>
               <p className="flex">cuz it ain&apos;t public</p>
-            </div>
+            </FeaturesText>
+            {/* <div className="font-light text-4xl text-zinc-300 mt-4 flex flex-col">
+              
+            </div> */}
           </motion.section>
         </div>
       </div>

@@ -1,3 +1,24 @@
+/**
+ * The endpoint is responsible for updating the reactions of a specific post in the Supabase PostgreSQL database.
+ * 
+ * Endpoint Information
+ * Method: POST
+ * Path: /api/update_reactions
+ * 
+ * Request Body Parameters
+ * The request body should be sent as JSON. The following parameters are expected:
+ * post_id (string): The ID of the post to update.
+ * user_id (string): The ID of the user who performed the reaction.
+ * reaction (string): The type of reaction to update.
+ * action (string): The action to perform on the reaction. Possible values are "add" and "remove".
+ * 
+ * Response
+ * The endpoint provides different responses depending on the outcome of the reaction update process:
+ * Success (HTTP 200): The reaction was updated successfully. The response body will contain the updated post data.
+ * Method Not Allowed (HTTP 405): The request used an unsupported HTTP method.
+ * Server Error (HTTP 500): An error occurred on the server while processing the request. The response body will contain an error message.
+ */
+
 import supabase from "@/supabase/supabase";
 import { NextApiRequest, NextApiResponse } from "next";
 

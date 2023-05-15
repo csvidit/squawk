@@ -5,6 +5,30 @@ import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuidv4 } from "uuid";
 
+/**
+ * The endpoint is responsible for handling a POST request to add a new post, 
+ * including an image and caption, to a Supabase database.
+ * 
+ * Endpoint Information
+ * Method: POST
+ * Path: /api/add_post
+ * 
+ * Request Body Parameters
+ * The request body should be sent as a multipart form data. The following parameters are expected:
+ * user_id (string): The ID of the user creating the post.
+ * image (file): The image file to be uploaded.
+ * caption (string): The caption or description for the post.
+ * 
+ * Response
+ * The endpoint provides JSON responses for different scenarios:
+ * Success (HTTP 200): The post was created successfully. The response will contain the inserted post data.
+ * Method Not Allowed (HTTP 405): The request used an unsupported HTTP method.
+ * Form Parsing Error (HTTP 500): An error occurred while parsing the form data.
+ * Image Processing Error (HTTP 500): An error occurred while processing the image file.
+ * Upload Error (HTTP 500): An error occurred while uploading the photo to the cloud storage.
+ * Post Upload Error (HTTP 500): An error occurred while uploading the post data to the Supabase database.
+ */
+
 export const config = {
   api: {
     bodyParser: false,
@@ -20,8 +44,8 @@ export default async function handler(
   }
   console.log("Inside ADD_POST API endpoint");
   const form = new formidable.IncomingForm({
-    maxFileSize: 10 * 1024 * 1024, // 10 MB
-    maxFieldsSize: 10 * 1024 * 1024, // 10 MB
+    maxFileSize: 50 * 1024 * 1024, // 50 MB
+    maxFieldsSize: 50 * 1024 * 1024, // 50 MB
   });
 
   let formData = {

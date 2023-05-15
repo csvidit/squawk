@@ -1,3 +1,24 @@
+/**
+ * Initialization
+ * The Search component is defined as the default export of the file and represents the main component for the Search page. It allows users to search for other users and displays the search results.
+ *
+ * Rendering
+ * The component renders a section with the following elements:
+ * A Head component from Next.js to set the page title and metadata.
+ * The MainContainer component, which provides the main layout container.
+ * The MainContent component, which represents the main content section.
+ * The MainHeader component, which displays the username of the authenticated user.
+ * A container with a background and heading for the search section.
+ * A search input field and button for entering the search query and triggering the search.
+ * The SearchResultsContainer component, which displays the search results.
+ *
+ * Functionality
+ * The component manages the state of the search query using the query state variable.
+ * The handleQueryChange function is triggered when the user enters a value in the search input field and updates the query state accordingly.
+ * The clickHandler function is triggered when the user clicks the search button. It sends a request to the server to search for users based on the query and updates the results state with the search results.
+ * The results state is used to render the SearchResult components, which display the search results.
+ */
+
 import Head from "next/head";
 import MainContainer from "@/components/MainContainer";
 import MainContent from "@/components/MainContent";
@@ -15,7 +36,7 @@ import SearchResult from "@/components/SearchResult";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Home() {
+export default function Search() {
   const [results, setResults] = useState([]);
   const [userProfile, setUserProfile] = useState();
   const [query, setQuery] = useState("");
@@ -56,10 +77,28 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>squawk components</title>
-        <meta name="description" content="squawk components" />
+        <title>Preferences - Squawk Social</title>
+        <meta
+          name="description"
+          content="Search your friends on Squawk Social."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Squawk Social LLC" />
+        <meta
+          name="keywords"
+          content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Squawk Social" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://squawk.com/search" />
+        <meta property="og:site_name" content="Squawk Social LLC" />
+        <meta
+          property="description"
+          content="Search your friends on Squawk Social."
+        />
       </Head>
       <MainContainer>
         <MainContent>
@@ -93,7 +132,9 @@ export default function Home() {
               </button>
             </div>
             <SearchResultsContainer>
-              {results.map((x) => <SearchResult profile={x} key={x.user_id}/>)}
+              {results.map((x) => (
+                <SearchResult profile={x} key={x.user_id} />
+              ))}
             </SearchResultsContainer>
           </div>
         </MainContent>
@@ -103,5 +144,3 @@ export default function Home() {
 }
 
 export const getServerSideProps = withPageAuthRequired();
-
-// text-[#F08080]

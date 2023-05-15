@@ -21,6 +21,7 @@ const PostCard2 = (props: {
   const { user, error, isLoading } = useUser();
   const user_id = user?.sub;
   const post_id = props.post_id;
+  const alt = props.caption != "" ? props.caption : 'User image';
 
   const [r_100_len, set_r_100_len] = useState(
     props.reactions_100 == null ? 0 : props.reactions_100.length
@@ -166,23 +167,23 @@ const PostCard2 = (props: {
 
   return (
     <div className="rounded-2xl bg-black bg-opacity-50 w-10/12 h-1/3 p-2 lg:p-4 flex flex-col lg:flex-row justify-center items-center">
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         {/* <Suspense> */}
         <Image
           unoptimized
           src={props.src}
-          alt="Vidit Khandelwal"
+          alt={alt}
           width="1000"
           height="1000"
           className="rounded-md"
         ></Image>
         {/* </Suspense> */}
       </div>
-      <div className="flex flex-col justify-between items-end text-right h-full w-1/2 lg:ml-10 text-2xl lg:text-4xl">
-        <div className="flex flex-row space-x-2 items-center text-xl lg:text-2xl text-violet-500 mb-10">
+      <div className="flex flex-col justify-between items-end text-right h-full w-full lg:w-1/2 lg:ml-10 text-2xl lg:text-4xl">
+        <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-2 items-end lg:items-center text-xl lg:text-2xl text-violet-500 mb-10">
           <p className="flex">posted on {props.date}</p>
-          <BsDot />
-          <div className="flex self-center">
+          <BsDot className="hidden lg:flex" />
+          <div className="flex lg:self-center">
             <PostOptionsDialog
               post_id={props.post_id}
               postDeleter={undefined}

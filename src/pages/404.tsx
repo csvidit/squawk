@@ -1,3 +1,17 @@
+/**
+ * Initialization
+ * The ErrorPage component is defined as the default export of the file and represents the main component for the Error page. It displays a 404 error message along with a "Go back home" link.
+ * 
+ * Motion Variants
+ * The baseVariants object defines the motion variants for the link's hover effect. It changes the color to "#ef4444" on hover with a smooth transition.
+ * 
+ * Rendering
+ * The component renders a section with the following elements:
+ * A heading displaying the text "Error" and "404" with some CSS transforms applied for a visual effect.
+ * A motion div representing the "Go back home" link. It uses the Link component from Next.js for client-side navigation and applies the motion variants for the hover effect.
+ * A paragraph at the bottom displaying the text "squawk social".
+ */
+
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import MainContainer from "@/components/MainContainer";
@@ -20,14 +34,32 @@ const baseVariants = {
   },
 };
 
-export default function Home() {
+export default function ErrorPage() {
   return (
     <>
       <Head>
-        <title>squawk components</title>
-        <meta name="description" content="squawk components" />
+      <title>Error 404 - Squawk Social</title>
+        <meta
+          name="description"
+          content="Looks like you bounced around too much. There is nothing here."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Squawk Social LLC" />
+        <meta
+          name="keywords"
+          content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Squawk Social" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://squawk.com" />
+        <meta property="og:site_name" content="Squawk Social LLC" />
+        <meta
+          property="description"
+          content="Looks like you bounced around too much. There is nothing here."
+        />
       </Head>
       <MainContainer>
         <section

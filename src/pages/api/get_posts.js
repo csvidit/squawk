@@ -1,3 +1,22 @@
+/**
+ * The endpoint is responsible for retrieving posts from the Supabase PostgreSQL database based on the specified criteria.
+ * 
+ * Endpoint Information
+ * Method: POST
+ * Path: /api/get_posts
+ * 
+ * Request Body Parameters
+ * The request body should be sent as JSON. The following parameters are expected:
+ * user_id (string): The ID of the user for whom posts are being retrieved.
+ * criteria (string): The criteria for retrieving posts. Valid values are "self", "search", and any other value (which corresponds to retrieving posts from followed users).
+ * 
+ * Response
+ * The endpoint provides JSON responses for different scenarios:
+ * Success (HTTP 200): The posts were retrieved successfully. The response will contain an array of post objects.
+ * Method Not Allowed (HTTP 405): The request used an unsupported HTTP method.
+ * Server Error (HTTP 500): An error occurred on the server while processing the request.
+ */
+
 import supabase from "@/supabase/supabase";
 import { NextApiRequest, NextApiResponse } from "next";
 

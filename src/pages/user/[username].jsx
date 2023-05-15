@@ -1,3 +1,35 @@
+/**
+ * Initialization
+ * The Profile component is defined as the main component for this dynamic route. It handles rendering different profile views based on the provided username and the current user's information. The component is exported as the default export of the file.
+ * 
+ * State and Variables
+ * The component defines several state variables and variables:
+ * searchedUser: Holds the information of the user being searched for.
+ * posts: Stores the posts associated with the user profile.
+ * user, isLoading, error: Variables provided by the useUser hook from @auth0/nextjs-auth0 for handling user authentication.
+ * user_id: Stores the current user's ID.
+ * currentUser: Holds the information of the current user.
+ * resStatus: Stores the HTTP response status.
+ * router: The Next.js router object for handling routing.
+ * username: Extracted from the router's query object, representing the username from the route path.
+ * criteria: Represents the search criteria for fetching user profiles.
+ * isFollowing: Indicates whether the current user is following the searched user.
+ * 
+ * useEffect Hooks
+ * The component utilizes useEffect hooks to perform side effects. The following are the effects:
+ * Fetches the searched user's information and sets the searchedUser state.
+ * Fetches the current user's information and sets the currentUser state.
+ * 
+ * Conditional Rendering
+ * The component conditionally renders different profile views based on the current user and the searched user:
+ * If the current user's username matches the username from the route, it renders the SelfProfile component.
+ * If the current user's username does not match the searched user's username and the current user is following the searched user, it renders the OtherProfile component.
+ * If none of the above conditions are met, it renders the RestrictedProfile component.
+ * 
+ * getServerSideProps
+ * The getServerSideProps function is used for server-side rendering and authentication. It retrieves the username from the route query and fetches the user's data from the Supabase database. If the user is not found or an error occurs.
+ */
+
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
@@ -99,10 +131,28 @@ const Profile = (props) => {
     return (
       <>
         <Head>
-          <title>squawk components</title>
-          <meta name="description" content="squawk components" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+        <title>{currentUser.username} - Squawk Social</title>
+        <meta
+          name="description"
+          content="User profile on Squawk Social"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Squawk Social LLC" />
+        <meta
+          name="keywords"
+          content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Squawk Social" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://squawk.com" />
+        <meta property="og:site_name" content="Squawk Social LLC" />
+        <meta
+          property="description"
+          content="User profile on Squawk Social"
+        />
         </Head>
         <MainContainer>
           <MainProfileContent>

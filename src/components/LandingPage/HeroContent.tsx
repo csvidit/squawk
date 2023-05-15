@@ -4,6 +4,13 @@ import LandingNavButton from "../LandingNavButton";
 import Button from "../Button";
 import { HiOutlineLogin } from "react-icons/hi";
 
+/**
+
+    HeroContent Component
+    This component represents the main content section of the hero section on the landing page.
+    It displays a title, a subtitle, and a button for signing in/signing up for the application.
+    */
+
 const HeroContent = () => {
   return (
     <section

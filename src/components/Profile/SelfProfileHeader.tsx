@@ -16,12 +16,12 @@ const SelfProfileHeader = (props: {
             {props.username}
           </h1>
         </div>
-        <div className="flex flex-row space-x-5 items-center text-2xl lg:text-4xl">
+        <div className="flex flex-col lg:flex-row space-y-3 lg:space-y-0 lg:space-x-5 items-start lg:items-center text-2xl lg:text-4xl">
           <div className="flex flex-row space-x-2 items-center">
             <p className="">{props.numPosts}</p>
             <p className="text-white">{props.numPosts == 1 ? "post" : "posts"}</p>
           </div>
-          <div className="flex flex-row space-x-2 items-center select-none">
+          <div className="hidden lg:flex flex-row space-x-2 items-center select-none">
             <p className="text-white">/</p>
           </div>
           <Link href="/followers" className="flex flex-col items-center space-y-1 relative group">
@@ -31,7 +31,7 @@ const SelfProfileHeader = (props: {
             </div>
             <div className="absolute bottom-0 bg-red-400 h-[2px] group-hover:rounded-xl group-hover:h-[110%] group-hover:w-[110%] transition-all w-full"></div>
           </Link>
-          <div className="flex flex-row space-x-2 items-center select-none">
+          <div className="hidden lg:flex flex-row space-x-2 items-center select-none">
             <p className="text-white">/</p>
           </div>
           <Link href="/following" className="flex flex-col items-center space-y-1 relative group">
@@ -43,7 +43,7 @@ const SelfProfileHeader = (props: {
           </Link>
         </div>
       </div>
-      <div className="px-3 pb-3 lg:px-5 lg:pb-5 flex flex-row w-10/12 space-x-3 lg:space-x-5 justify-end items-center">
+      <div className="px-3 pb-3 lg:px-5 lg:pb-5 flex flex-row w-10/12 space-x-3 lg:space-x-5 lg:justify-end items-center">
         <FollowRequestsButton />
       </div>
     </div>

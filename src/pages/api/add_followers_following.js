@@ -1,6 +1,25 @@
 import supabase from "@/supabase/supabase";
 import { NextApiRequest, NextApiResponse } from "next";
 
+/**
+ * The endpoint is responsible for updating the followers and following arrays of two users in a Supabase database to establish a follow relationship between them.
+ * Endpoint Information
+ * Method: POST
+ * Path: /api/update_followers_following
+ * 
+ * Request Body Parameters
+ * The request body should be sent as JSON. The following parameters are expected:
+ * currentUser (string): The ID of the user who is initiating the follow action.
+ * selectedUser (string): The ID of the user who is being followed.
+ * 
+ * Response
+ * The endpoint provides JSON responses for different scenarios:
+ * Success (HTTP 200): The followers and following arrays were updated successfully.
+ * Method Not Allowed (HTTP 405): The request used an unsupported HTTP method.
+ * User Not Found (HTTP 404): The user specified in the request was not found.
+ * Server Error (HTTP 500): An error occurred on the server while processing the request.
+ */
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).end();

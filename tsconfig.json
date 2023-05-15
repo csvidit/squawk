@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js", "src/pages/api/reset_password.js", "src/pages/api/user_profile.ts", "src/pages/preferences.jsx", "src/pages/api/change_username.js", "src/pages/api/is_profile_complete.js", "src/pages/api/get_user_from_username.js", "src/pages/index.jsx", "src/pages/user/[username].jsx", "src/pages/api/add_post.js", "src/pages/search.jsx", "src/pages/follow-requests.jsx", "src/pages/api/get_following.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js", "src/supabase/supabase.config.js", "src/pages/api/reset_password.js", "src/pages/api/user_profile.js", "src/pages/preferences.jsx", "src/pages/api/change_username.js", "src/pages/api/is_profile_complete.js", "src/pages/api/get_user_from_username.js", "src/pages/index.jsx", "src/pages/user/[username].jsx", "src/pages/api/add_post.js", "src/pages/search.jsx", "src/pages/follow-requests.jsx", "src/pages/api/get_following.js", "src/pages/new-post.tsx"],
   "exclude": ["node_modules"]
 }

@@ -1,3 +1,27 @@
+/**
+ * Initialization
+ *
+ * The Home component is defined as the default export of the file and represents the main component for the Home page. It handles the rendering of different sections based on the user's authentication and profile completion status.
+ *
+ * State and Variables
+ * The component defines the following state variables and variables:
+ * user, error, isLoading: Variables provided by the useUser hook from @auth0/nextjs-auth0/client for handling user authentication.
+ * router: The Next.js router for client-side routing.
+ * user_id: Stores the current user's ID.
+ * userProfile: Holds the information of the current user.
+ *
+ * useEffect Hook
+ * The component uses the useEffect hook to fetch the current user's information when the component mounts. The fetchProfileData function retrieves the user's profile data from the server and updates the userProfile state accordingly.
+ *
+ * Rendering
+ *
+ * The component renders the following sections based on the user's authentication and profile completion status:
+ *
+ * If the user is authenticated and the profile is incomplete, it renders a section for changing the default username.
+ * If the user is authenticated and the profile is complete, it renders a section for displaying posts.
+ * If the user is not authenticated, it renders various sections for the landing page, including the hero content, about section, features section, signup section, and landing page navigation.
+ */
+
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
@@ -56,13 +80,31 @@ export default function Home() {
       return (
         <>
           <Head>
-            <title>squawk components</title>
-            <meta name="description" content="squawk components" />
+            <title>Squawk Social</title>
+            <meta
+              name="description"
+              content="A new, quirky, unserious social media platform for Gen-Z"
+            />
             <meta
               name="viewport"
               content="width=device-width, initial-scale=1"
             />
+            <meta name="author" content="Squawk Social LLC" />
+            <meta
+              name="keywords"
+              content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+            />
             <link rel="icon" href="/favicon.ico" />
+            <meta name="robots" content="all" />
+
+            <meta property="og:title" content="Squawk Social" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://squawk.com" />
+            <meta property="og:site_name" content="Squawk Social LLC" />
+            <meta
+              property="description"
+              content="A new, quirky, unserious social media platform for Gen-Z"
+            />
           </Head>
           <MainContainer>
             <MainContent>
@@ -107,7 +149,7 @@ export default function Home() {
             <MainContent>
               <MainHeader username={userProfile?.username} />
               <div className="w-full h-full min-w-screen min-h-screen flex flex-row justify-center items-center">
-                <Posts user_id={user_id} criteria="following"/>
+                <Posts user_id={user_id} criteria="following" />
               </div>
             </MainContent>
           </MainContainer>
@@ -136,8 +178,6 @@ export default function Home() {
 }
 
 // export const getServerSideProps = () => {
-
-  
 
 // }
 

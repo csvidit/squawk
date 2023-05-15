@@ -95,10 +95,28 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>squawk components</title>
-        <meta name="description" content="squawk components" />
+        <title>New Post - Squawk Social</title>
+        <meta
+          name="description"
+          content="Create and share a new post on Squawk Social."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Squawk Social LLC" />
+        <meta
+          name="keywords"
+          content="Squawk Social, fun, unserious, social media, social media platform, Gen-Z, GenZ"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Squawk Social" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://squawk.com/new-post" />
+        <meta property="og:site_name" content="Squawk Social LLC" />
+        <meta
+          property="description"
+          content="Create and share a new post on Squawk Social."
+        />
       </Head>
       <MainContainer>
         <MainContent>
@@ -110,7 +128,10 @@ export default function Home() {
               </h1>
             </div>
             <div className="hidden flex-col justify-center items-center w-80 h-40">
-              <Toast duration={75} className="flex flex-row p-2 lg:p-4 justify-between items-center bg-lime-900 text-lime-400 bg-opacity-50 drop-shadow-md">
+              <Toast
+                duration={75}
+                className="flex flex-row p-2 lg:p-4 justify-between items-center bg-lime-900 text-lime-400 bg-opacity-50 drop-shadow-md"
+              >
                 <p className="">Post Submitted Successfully!</p>
                 <Toast.Toggle className="flex flex-row justify-center items-center bg-lime-900  hover:bg-neutral-900" />
               </Toast>

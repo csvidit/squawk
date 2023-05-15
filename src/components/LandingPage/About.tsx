@@ -1,6 +1,13 @@
 import React from "react";
 import DemoPostCard from "../DemoPostCard";
 
+/**
+
+    About Component
+    This component represents the "About" section of the Landing Page.
+    It displays information about the social media platform's purpose. 
+    */
+
 const About = () => {
   return (
     <section
@@ -11,7 +18,7 @@ const About = () => {
       }
     >
       <div className="flex flex-col lg:h-screen lg:w-1/3 lg:ml-12 justify-center">
-        <DemoPostCard/>
+        <DemoPostCard />
       </div>
       <div className="flex flex-col lg:h-screen w-2/3 justify-center">
         <h2 className="font-medium text-4xl mt-10 lg:mt-0 lg:text-6xl text-lime-500">
@@ -21,7 +28,9 @@ const About = () => {
           no algorithms, no influencers, no bs.
         </p>
         <div className="flex flex-row space-x-5 items-center italic">
-          <p className="font-light text-6xl lg:text-8xl text-red-400 mt-12">just vibes.</p>
+          <p className="font-light text-6xl lg:text-8xl text-red-400 mt-12">
+            just vibes.
+          </p>
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ const HomeContent = (props: { children: any }) => {
         "w-screen h-screen flex flex-col bg-transparent justify-center items-center scroll-smooth"
       }
     >
-        <MainHeader/>
+        {/* <MainHeader/> */}
       {props.children}
     </section>
   );

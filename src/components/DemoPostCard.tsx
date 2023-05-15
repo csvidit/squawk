@@ -33,10 +33,58 @@ const DemoPostCard = () => {
         ></Image>
       </motion.div>
       <motion.div className="w-full flex flex-row justify-center items-center space-x-5 p-4">
-        <ReactionButton shadow="hover:shadow-red-300">💯</ReactionButton>
-        <ReactionButton shadow="hover:shadow-green-300">🐍</ReactionButton>
-        <ReactionButton shadow="hover:shadow-fuchsia-300">💅</ReactionButton>
-        <ReactionButton shadow="hover:shadow-slate-300">💀</ReactionButton>
+      <ReactionButton
+            isChecked={false}
+            checkedChanger={null}
+            onClick={null}
+            shadow="hover:shadow-red-300"
+          >
+            <Image
+              src="/hundred_points_3d.png"
+              width={40}
+              height={40}
+              alt="Hundred Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={false}
+            checkedChanger={null}
+            onClick={null}
+            shadow="hover:shadow-fuchsia-300"
+          >
+            <Image
+              src="/nail_polish_3d_default.png"
+              width={40}
+              height={40}
+              alt="Nail Paint Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={false}
+            checkedChanger={null}
+            onClick={null}
+            shadow="hover:shadow-slate-300"
+          >
+            <Image
+              src="/skull_3d.png"
+              width={40}
+              height={40}
+              alt="Skull Emoji"
+            />
+          </ReactionButton>
+          <ReactionButton
+            isChecked={false}
+            checkedChanger={null}
+            onClick={null}
+            shadow="hover:shadow-green-300"
+          >
+            <Image
+              src="/snake_3d.png"
+              width={40}
+              height={40}
+              alt="Snake Emoji"
+            />
+          </ReactionButton>
       </motion.div>
     </motion.div>
   );

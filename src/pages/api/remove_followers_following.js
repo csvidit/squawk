@@ -1,3 +1,24 @@
+/**
+ * The endpoint is responsible for updating the followers and following relationships between users in a Supabase database.
+ * 
+ * Endpoint Information
+ * Method: POST
+ * Path: /api/update_followers_following
+ * 
+ * Request Body Parameters
+ * The request body should be sent as JSON. The following parameters are expected:
+ * currentUser (string): The ID of the current user.
+ * selectedUser (string): The ID of the user to update the relationship with.
+ * type (string): The type of relationship update. It can be either "follower" or "following". 
+ * If it is "follower", the current user wants to remove the selected user as a follower. 
+ * If it is "following", the current user wants to stop following the selected user.
+ * 
+ * Response
+ * The endpoint provides a JSON response for a successful update:
+ * Success (HTTP 200): The follow relationship between users was updated successfully. The response will contain a message indicating the success of the operation.
+ * If an error occurs during the update process or if the requested users are not found, the endpoint will respond with an appropriate error status and a JSON response containing an error message.
+ */
+
 import supabase from "@/supabase/supabase";
 import { NextApiRequest, NextApiResponse } from "next";
 

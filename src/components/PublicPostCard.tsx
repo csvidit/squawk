@@ -19,6 +19,7 @@ const PublicPostCard = (props: {
   const { user, error, isLoading } = useUser();
   const user_id = user?.sub;
   const post_id = props.post_id;
+  const alt = props.caption != "" ? props.caption : 'User image';
 
   const [r_100_len, set_r_100_len] = useState(
     props.reactions_100 == null ? 0 : props.reactions_100.length
@@ -165,29 +166,29 @@ const PublicPostCard = (props: {
 
   return (
     <div className="rounded-2xl bg-black bg-opacity-50 w-10/12 h-1/3 p-2 lg:p-4 flex flex-col lg:flex-row justify-center items-center">
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         {/* <Suspense> */}
         <Image
           unoptimized
           src={props.src}
-          alt="Vidit Khandelwal"
+          alt={alt}
           width="1000"
           height="1000"
           className="rounded-md"
         ></Image>
         {/* </Suspense> */}
       </div>
-      <div className="flex flex-col justify-between items-end text-right w-1/2 lg:ml-10 text-2xl lg:text-4xl">
+      <div className="flex flex-col justify-between items-center lg:items-end text-right w-full lg:w-1/2 lg:ml-10 text-2xl lg:text-4xl">
         <div className="text-3xl lg:text-6xl text-lime-500">
           <p className="">{props.username}</p>
         </div>
         <div className="text-xl lg:text-2xl text-violet-500 mb-10">
           <p className="">posted on {props.date}</p>
         </div>
-        <div className="text-2xl lg:text-4xl text-red-400 mb-10 overscroll-conain">
+        <div className="text-2xl lg:text-4xl text-neutral-100 mb-10 overscroll-conain">
           <p className="">{props.caption}</p>
         </div>
-        <div className="flex flex-col space-y-10 justify-around text-lime-500 text-4xl lg:text-8xl">
+        <div className="grid grid-cols-2 gap-y-10 gap-x-10 self-center lg:self-end mb-10 lg:mb-0 lg:flex lg:flex-col lg:space-y-10 lg:justify-around text-lime-500 text-4xl lg:text-8xl">
           <ReactionButton
             isChecked={r_100_checked}
             checkedChanger={set_r_100_checked}

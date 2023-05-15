@@ -10,6 +10,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import LandingNavButton from "../LandingNavButton";
 
+/**
+
+    LandingNav Component
+    This component represents the navigation bar on the landing page.
+    It provides links to different sections of the page.
+    */
+
 const iconVariants = {
   hover: {
     rotate: 45,
