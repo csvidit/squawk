@@ -1,3 +1,7 @@
+/**
+ * Button used in the new-post route. Handles submission of post through a clickHandler passed as a prop.
+ */
+
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi2";
 import { UrlObject } from "url";

@@ -1,3 +1,7 @@
+/**
+ * Features section of the Landing Page. Uses GSAP for horizontal scroll effects. 
+ */
+
 import React from "react";
 import styles from "./Features.module.scss";
 import { useRef, useEffect } from "react";

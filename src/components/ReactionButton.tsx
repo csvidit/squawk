@@ -1,3 +1,10 @@
+/**
+ * The reaction button component reused across all types of post cards. 
+ * The styling changes based on the checked state of the individual button.
+ * 
+ * Commented code is another implementation of changing styles, which did not work due to latency issues.
+ */
+
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 

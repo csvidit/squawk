@@ -1,3 +1,8 @@
+/**
+ * Post Card used in the landing page strictly for demo purposes, with no user functionality. 
+ * This is not representative of how the actual post cards look, merely a demonstration of the reactions. 
+ */
+
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";

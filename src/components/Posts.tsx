@@ -1,8 +1,17 @@
-//criteria can have one of two values : self, following
+/**
+ * The Posts component renders posts based on criteria. 
+ * "self" is used when the user is seeing their own posts. 
+ * "search" is used when a user is navigating to the profile of another user, and trying to see their posts
+ * the else condition is used when posts are being shown in the timeline/home page of a user, that is, posts 
+ * of users they are following.
+ * 
+ * When the user is seeing their own posts, reaction counts are visible, and so is the delete post option.
+ * When the user is seeing someone else's posts by searching their profile, the username is not shown.
+ * When the user is seeing posts on their timeline, usernames of the ones who posted the photo is shown. 
+ * 
+ */
 
 import { useState, useEffect } from "react";
-import UserProfilePostCard from "./UserProfilePostCard";
-import PostCard from "./PostCard";
 import PostCard2 from "./Profile/PostCard2";
 import PublicPostCard from "./PublicPostCard";
 import PublicProfilePostCard from "./PublicProfilePostCard";
