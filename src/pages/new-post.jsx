@@ -21,16 +21,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const router = useRouter();
-  const [userProfile, setUserProfile] = useState<Profile>();
+  const [userProfile, setUserProfile] = useState();
   const { user, isLoading } = useUser();
   const user_id = user?.sub;
-  const [image, setImage] = useState<string>();
-  const [imageFile, setImageFile] = useState<File>();
+  const [image, setImage] = useState();
+  const [imageFile, setImageFile] = useState();
   const [caption, setCaption] = useState("");
 
-  function handleCaptionChange(event: {
-    target: { value: SetStateAction<string> };
-  }) {
+  function handleCaptionChange(event) {
     setCaption(event.target.value);
   }
 
@@ -64,7 +62,7 @@ export default function Home() {
   const handleSubmit = () => {
     const sendPostData = async () => {
       console.log("SendPostData called");
-      const formData: any = new FormData();
+      const formData = new FormData();
       formData.append("user_id", user_id);
       formData.append("image", imageFile, "newPostImage");
       formData.append("caption", caption);
@@ -149,7 +147,7 @@ export default function Home() {
                         onChange={(event) => {
                           setImage(URL.createObjectURL(event.target.files[0]));
                           setImageFile(
-                            (event.target as HTMLInputElement)!.files?.[0]
+                            (event.target).files?.[0]
                           );
                         }}
                         name="newPostPhoto"
@@ -176,7 +174,7 @@ export default function Home() {
                       onChange={(event) => {
                         setImage(URL.createObjectURL(event.target.files[0]));
                         setImageFile(
-                          (event.target as HTMLInputElement)!.files?.[0]
+                          (event.target).files?.[0]
                         );
                       }}
                       name="newPostPhoto"
