@@ -1,6 +1,5 @@
 import styles from "./Signup.module.scss";
 import { SetStateAction, useState } from "react";
-import SignupTabs from "../SignupTabs";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
