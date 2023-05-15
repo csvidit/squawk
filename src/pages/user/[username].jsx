@@ -39,7 +39,6 @@ import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
 import { UserProfile, useUser } from "@auth0/nextjs-auth0/client";
 import MainProfileContent from "@/components/MainProfileContent";
-import UserProfilePostCard from "@/components/UserProfilePostCard";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import MainHeader from "@/components/MainHeader";
 import supabase from "@/supabase/supabase";
