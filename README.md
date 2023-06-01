@@ -1,5 +1,29 @@
-# squawk-components
+# squawk
 
-Only for creating and testing apps for the squawk social media platform, in fulfillment of Vidit Khandelwal's computer science major at DePauw University. 
+A fun and unserious social media web application targeted at Gen Z. Created for CSC498 Senior Project, for completion of my computer science major at DePauw University.
 
-&copy; 2023 Vidit Khandelwal. All rights reserved. 
+## Tech Stack
+
+### Frontend
+
+* React (as part of Next.js)
+* TailwindCSS
+* Framer Motion
+* GreenSock Animation Protocol (GSAP)
+
+### Authentication
+
+* Auth0
+
+### Database
+
+* PostgreSQL
+
+### BaaS (Backend as a service)
+
+* Supabase (used for Database and Storage)
+
+### Backend & Framework
+
+* Node.js (in Next.js API routes)
+
